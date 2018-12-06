@@ -14,7 +14,7 @@ function sayHello() {
 let p = document.getElementById("canvas1");
 let ctx = p.getContext("2d");
 ctx.font = "48px Arial";
-ctx.clearRect(0, 0, 1024, 512);
+ctx.clearRect(0, 0, p.width, p.height);
 ctx.strokeText("Hello, World", 10, 50);
 }
 
@@ -49,6 +49,11 @@ function drawRectangle() {
   let x = prompt("Please enter your rectangle's x coordinate.");
   let y = prompt("Please enter your rectangle's y coordinate.");
 
+height = Number(height);
+width = Number(width);
+x = Number(x);
+y = Number(y);
+
 if (height == false || width == false || x < 5 || y < 5){
   if (height == false){
     alert('height too small.');
@@ -62,9 +67,10 @@ if (height == false || width == false || x < 5 || y < 5){
   if (y < 5){
     alert("Y value too small.  Must be greater than or equal to 5.");
   }
-} else if (512 - height < 1 || 1024 - width < 1 || 1024 - (width + x) < 1 || 512 - (height + y) < 1){
-  alert('One of your inputs does not fit witin the canvas.');
+} else if (height > p.height || width > p.width || (height + y) > p.height || (width + x) > p.width){
+    alert("Your inputs extend outside the canvas size.");
 } else {
+ctx.clearRect(0, 0, p.width, p.height);
 ctx.strokeRect(x, y, width, height);
 }
 }
@@ -95,7 +101,17 @@ ctx.strokeRect(x, y, width, height);
  */
 
 function drawColoredRectangle() {
-
+let p = document.getElementById("canvas3");
+let color = prompt("Please enter a color")
+let ctx = p.getContext("2d");
+String(color);
+if (color === "black" || color === "blue" || color === "green" || color === "orange" || color === "purple" || color === "red" || color === "yellow") {
+  ctx.rect(10, 10, 100, 50);
+  ctx.fillStyle = color;
+  ctx.fill();
+} else {
+    alert("Invalid Color");
+  }
 }
 
 /*
@@ -128,7 +144,31 @@ function drawColoredRectangle() {
  */
 
 function drawTriangle() {
+let p = document.getElementById("canvas4");
+let side1 = prompt("Side 1:");
+let side2 = prompt("Side 2:");
+let side3 = prompt("Side 3:");
+let ctx = p.getContext("2d");
+if (side1 == Number(side1) && side2 == Number(side2) && side3 == Number(side3)){
+  Number(side1);
+  Number(side2);
+  Number(side3);
+side1Squared = side1 * side1;
+side2Squared = side2 * side2;
+side3Squared = side3 * side3;
+side1and2 = side1Squared + side2Squared;
+if (side1and2 == side3Squared) {
 
+
+//This is were the code to draw the Triangle Goes
+
+
+} else {
+  alert("Invalid.  Numbers do not make a right tiangle");
+}
+} else {
+  alert("One of your inputs is not a number");
+}
 }
 
 /*
