@@ -153,16 +153,17 @@ if (side1 == Number(side1) && side2 == Number(side2) && side3 == Number(side3)){
   Number(side1);
   Number(side2);
   Number(side3);
-side1Squared = side1 * side1;
-side2Squared = side2 * side2;
-side3Squared = side3 * side3;
-side1and2 = side1Squared + side2Squared;
+let side1Squared = side1 * side1;
+let side2Squared = side2 * side2;
+let side3Squared = side3 * side3;
+let side1and2 = side1Squared + side2Squared;
 if (side1and2 == side3Squared) {
-
-
-//This is were the code to draw the Triangle Goes
-
-
+  ctx.beginPath();
+  ctx.moveTo(10, 10);
+  ctx.lineTo(10, side1);
+  ctx.lineTo(10, side1);
+  ctx.closePath();
+  ctx.stroke();
 } else {
   alert("Invalid.  Numbers do not make a right tiangle");
 }
