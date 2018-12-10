@@ -158,10 +158,11 @@ let side2Squared = side2 * side2;
 let side3Squared = side3 * side3;
 let side1and2 = side1Squared + side2Squared;
 if (side1and2 == side3Squared) {
+  ctx.clearRect(0,0,p.width,p.height);
   ctx.beginPath();
   ctx.moveTo(10, 10);
   ctx.lineTo(10, side1);
-  ctx.lineTo(10, side1);
+  ctx.lineTo(side2, side1);
   ctx.closePath();
   ctx.stroke();
 } else {
@@ -170,6 +171,8 @@ if (side1and2 == side3Squared) {
 } else {
   alert("One of your inputs is not a number");
 }
+// if (height > p.height || width > p.width || (height + y) > p.height || (width + x) > p.width){
+//     alert("Your inputs extend outside the canvas size.");
 }
 
 /*
@@ -192,7 +195,13 @@ if (side1and2 == side3Squared) {
  */
 
 function drawSmileyFace() {
-
+let p = document.getElementById("canvas5");
+let rad = prompt("Enter the smiley face's radius");
+let ctx = p.getContext("2d");
+ctx.clearRect(0,0,p.width,p.height)
+ctx.beginPath();
+ctx.arc(1.5 * rad, 1.5 * rad, rad, 0, 2*Math.PI);
+ctx.stroke();
 }
 
 /*
