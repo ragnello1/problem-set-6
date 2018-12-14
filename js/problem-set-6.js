@@ -105,10 +105,12 @@ let p = document.getElementById("canvas3");
 let color = prompt("Please enter a color")
 let ctx = p.getContext("2d");
 String(color);
+ctx.clearRect(0,0,ctx.width,ctx.height);
 if (color === "black" || color === "blue" || color === "green" || color === "orange" || color === "purple" || color === "red" || color === "yellow") {
   ctx.rect(10, 10, 100, 50);
   ctx.fillStyle = color;
   ctx.fill();
+
 } else {
     alert("Invalid Color");
   }
@@ -157,13 +159,14 @@ let side1Squared = side1 * side1;
 let side2Squared = side2 * side2;
 let side3Squared = side3 * side3;
 let side1and2 = side1Squared + side2Squared;
-if (side1and2 == side3Squared) {
+
+if (side1and2 == side3Squared && side1 != 0 && side2 != 0 && side3 != 0) {
   ctx.clearRect(0,0,p.width,p.height);
   ctx.beginPath();
-  ctx.moveTo(10, 10);
-  ctx.lineTo(10, side1);
+  ctx.moveTo(0 , 0);
+  ctx.lineTo(0, side1);
   ctx.lineTo(side2, side1);
-  ctx.closePath();
+  ctx.lineTo(0, 0);
   ctx.stroke();
 } else {
   alert("Invalid.  Numbers do not make a right tiangle");
@@ -197,11 +200,17 @@ if (side1and2 == side3Squared) {
 function drawSmileyFace() {
 let p = document.getElementById("canvas5");
 let rad = prompt("Enter the smiley face's radius");
+let smile = 0.7 * rad;
 let ctx = p.getContext("2d");
+
+//circle
 ctx.clearRect(0,0,p.width,p.height)
 ctx.beginPath();
-ctx.arc(1.5 * rad, 1.5 * rad, rad, 0, 2*Math.PI);
+ctx.arc(rad, rad, rad, 0, 2*Math.PI);
 ctx.stroke();
+
+//mouth
+
 }
 
 /*
