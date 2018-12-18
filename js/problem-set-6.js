@@ -342,7 +342,28 @@ function drawStopSign() {
  */
 
 function drawPyramid() {
-
+  let p = document.getElementById('canvas8');
+  let ctx = p.getContext('2d');
+  ctx.clearRect(0, 0, p.width, p.height);
+  let length=Number(prompt("Please enter a side length"));
+   if (length < 101 && length > 0) {
+     let x = 10;
+     let y = p.height-10;
+     let i = 0;
+     line = 1;
+      while(i < 5){
+        for(let j = 0+line;j <= 5; j++){
+          ctx.strokeRect(x, y - length, length, length);
+          x += length;
+        }
+        x = 10 + (length / 2) * line;
+        y -= length;
+        line++;
+        i++;
+      }
+    } else {
+      alert("The pyramid will not fit the canvas");
+      }
 }
 
 /*
@@ -375,5 +396,76 @@ function drawPyramid() {
  */
 
 function drawHouse() {
+  let p = document.getElementById('canvas9');
+  let ctx = p.getContext('2d');
+  ctx.clearRect(0, 0, p.width, p.height);
+  let house = String(prompt("Please enter a color for the house"));
+  let door = String(prompt("Please enter a color for the door"));
+  if ((house == "blue" || house == "brown"|| house == "green" || house == "orange" || house == "purple" || house == "red" || house == "yellow")
+  && (door == "blue" || door == "brown"|| door == "green" || door == "orange" || door == "purple" || door == "red" || door == "yellow")){
+    ctx.lineWidth = 1;
+    //frame
+    ctx.beginPath();
+    ctx.rect(150, 250 ,700,500);
+    ctx.fillStyle = house;
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+    ctx.fill();
+
+    //roof
+    ctx.beginPath();
+    ctx.moveTo(150,250);
+    ctx.lineTo(500,50);
+    ctx.lineTo(850,250);
+    ctx.lineTo(150,250);
+    ctx.fillStyle = "gray";
+    ctx.stroke();
+    ctx.fill();
+
+    //window1
+    ctx.beginPath();
+    ctx.rect(260, 320 ,100,100);
+    ctx.fillStyle = "lightBlue";
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+    ctx.fill();
+    //window2
+    ctx.beginPath();
+    ctx.rect(260, 580 ,100,100);
+    ctx.fillStyle = "lightBlue";
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+    ctx.fill();
+    //window3
+    ctx.beginPath();
+    ctx.rect(640, 320 ,100,100);
+    ctx.fillStyle = "lightBlue";
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+    ctx.fill();
+    //window4
+    ctx.beginPath();
+    ctx.rect(640, 580 ,100,100);
+    ctx.fillStyle = "lightBlue";
+    ctx.strokeStyle = "black";
+    ctx.stroke();
+    ctx.fill();
+
+    //door
+    ctx.beginPath();
+    ctx.rect(450,550, 100, 200);
+    ctx.fillStyle = door;
+    ctx.stroke();
+    ctx.fill();
+
+    //knob
+    ctx.beginPath();
+    ctx.arc(530, 650, 10, 0, 2 * Math.PI);
+    ctx.fillStyle = "yellow";
+    ctx.stroke();
+    ctx.fill();
+  } else {
+    alert("Input not a supported color.");
+  }
 
 }
