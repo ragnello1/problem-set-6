@@ -243,7 +243,40 @@ let rad = Number(prompt("Enter your circle's radius"));
  */
 
 function drawStar() {
+  let p = document.getElementById("canvas6")
+  let ctx = p.getContext("2d");
+   ctx.clearRect(0,0,1024,760);
 
+   let radOut;
+   let radIn;
+   do {
+     radOut = Number(prompt("Please enter your Outer Radius"));
+   } while (isNaN(radOut));
+   do {
+     radIn = Number(prompt("Please enter your Inner Radius"));
+   } while (isNaN(radIn));
+
+   let deg = 0;
+
+   if (radIn > radOut){
+     alert("Your outer radius must be larger than your inner radius");
+   } else if (radOut<2){
+     alert("Your outer radius is too small");
+   } else if (radIn<1){
+     alert("Your inner radius is too small");
+   } else {
+     //draw the star
+     ctx.beginPath();
+     ctx.moveTo(125,125-radOut);
+     for (let i=0; i<=5; i++){
+       ctx.lineTo(125+Math.round((Math.cos(Math.PI*(deg-90)/180)*radOut)), 125+Math.round((Math.sin(Math.PI*(deg-90)/180)*radOut)));
+       deg +=36;
+       ctx.lineTo(125+Math.round((Math.cos(Math.PI*(deg-90)/180)*radIn)), 125+Math.round((Math.sin(Math.PI*(deg-90)/180)*radIn)));
+       deg +=36;
+     }
+     ctx.stroke();
+     ctx.closePath();
+   }
 }
 
 /*
