@@ -147,33 +147,30 @@ if (color === "black" || color === "blue" || color === "green" || color === "ora
 
 function drawTriangle() {
 let p = document.getElementById("canvas4");
-let side1 = prompt("Side 1:");
-let side2 = prompt("Side 2:");
-let side3 = prompt("Side 3:");
+let side1 = Number(prompt("Side 1:"));
+let side2 = Number(prompt("Side 2:"));
+let side3 = Number(prompt("Side 3:"));
 let ctx = p.getContext("2d");
-if (side1 == Number(side1) && side2 == Number(side2) && side3 == Number(side3)){
-  Number(side1);
-  Number(side2);
-  Number(side3);
-let side1Squared = side1 * side1;
-let side2Squared = side2 * side2;
-let side3Squared = side3 * side3;
-let side1and2 = side1Squared + side2Squared;
+  if (side1 == Math.abs(side1) && side2 == Math.abs(side2) && side3 == Math.abs(side3)){
 
-if (side1and2 == side3Squared && side1 != 0 && side2 != 0 && side3 != 0) {
-  ctx.clearRect(0,0,p.width,p.height);
-  ctx.beginPath();
-  ctx.moveTo(0 , 0);
-  ctx.lineTo(0, side1);
-  ctx.lineTo(side2, side1);
-  ctx.lineTo(0, 0);
-  ctx.stroke();
-} else {
-  alert("Invalid.  Numbers do not make a right tiangle");
-}
-} else {
-  alert("One of your inputs is not a number");
-}
+    if (side1**2 + side2**2 == side3**2 && side1 != 0 && side2 != 0 && side3 != 0) {
+      ctx.clearRect(0,0,p.width,p.height);
+      ctx.beginPath();
+      ctx.moveTo(10 , 10);
+      ctx.lineTo(10, 10 + side1);
+      ctx.lineTo(10 + side2, 10 + side1);
+      ctx.lineTo(10, 10);
+      ctx.stroke();
+      if (p.height - 10 - side1 < 0 || p.width - 10 - side2 < 0) {
+        alert("Your triangle will exceed the canvas size.")
+        ctx.clearRect(0,0,p.width,p.height);
+      }
+    } else {
+      alert("One of your inputs is invalid");
+    }
+  } else {
+    alert("One of your inputs is invalid");
+  }
 // if (height > p.height || width > p.width || (height + y) > p.height || (width + x) > p.width){
 //     alert("Your inputs extend outside the canvas size.");
 }
@@ -199,18 +196,32 @@ if (side1and2 == side3Squared && side1 != 0 && side2 != 0 && side3 != 0) {
 
 function drawSmileyFace() {
 let p = document.getElementById("canvas5");
-let rad = prompt("Enter the smiley face's radius");
-let smile = 0.7 * rad;
 let ctx = p.getContext("2d");
+let rad = Number(prompt("Enter your circle's radius"));
+  if(rad > 0 &&  rad < 250){
 
-//circle
-ctx.clearRect(0,0,p.width,p.height)
-ctx.beginPath();
-ctx.arc(rad, rad, rad, 0, 2*Math.PI);
-ctx.stroke();
+    let smile = rad * .7;
+    let eye = rad * .1;
+    //circle
+    ctx.clearRect(0,0,p.width,p.height);
+    ctx.beginPath();
+    ctx.arc(rad + 5, rad + 5, rad, 0, Math.PI * 2);
+    ctx.stroke();
 
-//mouth
+    ctx.beginPath();
+    ctx.arc(rad + 5  - rad/2, rad + 5 - rad/3, eye, 0, Math.PI*2);
+    ctx.stroke();
 
+    ctx.beginPath();
+    ctx.arc(rad + 5 + rad/2, rad + 5 - rad/3, eye, 0, Math.PI*2);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.arc(rad + 5 , rad + 5, smile, 0, Math.PI);
+    ctx.stroke();
+} else {
+    alert("Your smiley face does not fit on the canvas.");
+}
 }
 
 /*
@@ -251,7 +262,32 @@ function drawStar() {
  */
 
 function drawStopSign() {
-
+  let p = document.getElementById('canvas7')
+  let ctx = p.getContext('2d');
+  let side = 80;
+  let center = Number((80/Math.sqrt(2)).toFixed(0));
+  let x = 70;
+  let y = 10;
+    //shape
+    ctx.clearRect(0, 0, p.width, p.height);
+    ctx.beginPath();
+    ctx.moveTo(x,y);
+    ctx.lineTo(x+side,y);
+    ctx.lineTo(x+side+center,y+center);
+    ctx.lineTo(x+side+center,y+side+center);
+    ctx.lineTo(x+side,y+side+center+center);
+    ctx.lineTo(x,y+side+center+center);
+    ctx.lineTo(x-center,y+side+center);
+    ctx.lineTo(x-center,y+center);
+    ctx.lineTo(x,y);
+    ctx.fillStyle="red";
+    ctx.fill();
+    //text
+    ctx.beginPath();
+    ctx.font="65px Arial";
+    ctx.fillStyle="white";
+    ctx.fillText("STOP", 20, 130)
+    ctx.closePath()
 }
 
 /*
